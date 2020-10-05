@@ -1,0 +1,59 @@
+name:                partial-inference
+version:             0.1.0.0
+github:              "szokolimatyas000/partial-inference"
+license:             BSD3
+author:              "Mátyás Szokoli"
+maintainer:          "example@example.com"
+copyright:           "2020 Mátyás Szokoli"
+
+extra-source-files:
+- README.md
+- ChangeLog.md
+
+# Metadata used when publishing your package
+# synopsis:            Short description of your package
+# category:            Web
+
+# To avoid duplicated efforts in documentation and dealing with the
+# complications of embedding Haddock markup inside cabal files, it is
+# common to point users to the README.md file.
+description:         Please see the README on GitHub at <https://github.com/githubuser/partial-inference#readme>
+
+dependencies:
+- base >= 4.7 && < 5
+- containers >= 0.6.2.1
+- mtl >= 2.2.2
+- parsec
+- QuickCheck >= 2.13
+- monad-memo
+- criterion
+- deepseq
+
+library:
+  source-dirs: src
+
+executables:
+  partial-inference-exe:
+    main:                Main.hs
+    source-dirs:         app
+    ghc-options:
+    - -threaded
+    - -rtsopts
+    - -with-rtsopts=-N
+    - -O2
+    - -fexcess-precision
+    - -optc-ffast-math
+    - -optc-O3
+    dependencies:
+    - partial-inference
+
+tests:
+  partial-inference-test:
+    main:                Spec.hs
+    source-dirs:         test
+    ghc-options:
+    - -threaded
+    - -rtsopts
+    - -with-rtsopts=-N
+    dependencies:
+    - partial-inference
