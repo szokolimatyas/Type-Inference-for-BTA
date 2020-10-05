@@ -17,11 +17,7 @@ extra-source-files:
 # To avoid duplicated efforts in documentation and dealing with the
 # complications of embedding Haddock markup inside cabal files, it is
 # common to point users to the README.md file.
-<<<<<<< HEAD
-description:         Please see the README on GitHub at <https://github.com/githubuser/partial-inference#readme>
-=======
 description:         Please see the README on GitHub at <https://github.com/szokolimatyas/Type-Inference-for-BTA/blob/master/README.md>
->>>>>>> Initial commit
 
 dependencies:
 - base >= 4.7 && < 5
