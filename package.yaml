@@ -45,7 +45,7 @@ executables:
     - -optc-ffast-math
     - -optc-O3
     dependencies:
-    - partial-inference
+    - inference-for-bta
 
 tests:
   partial-inference-test:
@@ -56,4 +56,4 @@ tests:
     - -rtsopts
     - -with-rtsopts=-N
     dependencies:
-    - partial-inference
+    - inference-for-bta

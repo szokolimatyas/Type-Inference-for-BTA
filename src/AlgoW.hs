@@ -10,7 +10,7 @@ import Control.Monad.Except
 import Control.Monad.State
 
 
-algoW :: Expr -> TypeEnv -> [Occurence] -> TI (Subst,Type)
+algoW :: Expr -> TypeEnv -> [Occurrence] -> TI (Subst,Type)
 algoW (EVar n) (TypeEnv env) os =
     case Map.lookup n env of
         Nothing -> error $ "undefined variable: " ++ n ++ "\n"  

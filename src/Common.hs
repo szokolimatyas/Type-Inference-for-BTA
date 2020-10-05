@@ -14,7 +14,7 @@ import Control.Monad.State
 import GHC.Generics (Generic)
 import Control.DeepSeq
 
-data Occurence = OFun 
+data Occurrence = OFun 
                 | OArg 
                 | OBody 
                 | OCond 
@@ -25,15 +25,15 @@ data Occurence = OFun
 
 type TyVar = Int
 
-data Type = TBase [Occurence]
-            | TArrow Type Type [Occurence]
+data Type = TBase [Occurrence]
+            | TArrow Type Type [Occurrence]
             | TVar TyVar
             | TUntyped
     deriving (Eq,Show)
 
 type Subst = Map TyVar Type
 
-type TI a =  ExceptT [Occurence] (State TyVar) a
+type TI a =  ExceptT [Occurrence] (State TyVar) a
 
 newtype TypeEnv = TypeEnv (Map String Type)
     deriving(Show)
@@ -122,13 +122,13 @@ freshTyVar = do
     modify (+1)
     return $ TVar i
 
-evalTI :: TI a -> (Either [Occurence] a,Int)
+evalTI :: TI a -> (Either [Occurrence] a,Int)
 evalTI t = 
     let e  = runExceptT t  
         e' = runState e 0
     in e'
 
-underline :: Expr -> [Occurence] -> Expr
+underline :: Expr -> [Occurrence] -> Expr
 underline (EApp ex1 ex2) (OFun : os)       = EApp (underline ex1 os) ex2
 underline (EApp_ ex1 ex2) (OFun : os)      = EApp_ (underline ex1 os) ex2
 underline (EApp ex1 ex2) (OArg : os)       = EApp ex1 (underline ex2 os)
